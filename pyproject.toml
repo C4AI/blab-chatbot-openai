@@ -8,8 +8,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-openai = "^0.26.5"
 blab-chatbot-bot-client = {extras = ["ws"], git = "https://github.com/C4AI/blab-chatbot-bot-client.git", branch = "main"}
+openai = "0.27.0"
 
 
 

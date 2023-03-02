@@ -1,25 +1,36 @@
+"""This module interacts with the APIs of OpenAI and BLAB Controller."""
+
+from collections import deque
+from typing import Any
+
 import openai
-
-from overrides import overrides
-
 from blab_chatbot_bot_client.conversation_websocket import (
     WebSocketBotClientConversation,
 )
 from blab_chatbot_bot_client.data_structures import (
-    OutgoingMessage,
-    MessageType,
     Message,
+    MessageType,
+    OutgoingMessage,
 )
+from overrides import overrides
 
-from blab_chatbot_openai.gpt3_settings_format import BlabOpenAIClientSettings
+from blab_chatbot_openai.openai_settings_format import BlabOpenAIClientSettings
+
+history_length = 8
 
 
-class GPT3WebSocketBotClientConversation(WebSocketBotClientConversation):
+class OpenAIWebSocketBotClientConversation(WebSocketBotClientConversation):
+    """Performs the communication between OpenAI and BLAB Controller."""
 
     settings: BlabOpenAIClientSettings
 
+    def __init__(self, *args: Any, **kwargs: Any):
+        """Create an instance. The history deque is initialized as empty."""
+        super().__init__(*args, **kwargs)
+        self.last_messages = deque(maxlen=history_length)
+
     @overrides
-    def on_connect(self):
+    def on_connect(self) -> None:
         greeting = OutgoingMessage(
             type=MessageType.TEXT,
             text="Hello!",
@@ -35,13 +46,38 @@ class GPT3WebSocketBotClientConversation(WebSocketBotClientConversation):
 
     @overrides
     def generate_answer(self, message: Message) -> list[OutgoingMessage]:
-        openai.api_key = self.settings.OPENAI_SETTINGS['API_KEY']
-        gpt3_answer = openai.Completion.create(
-            prompt=message.text,
-            **self.settings.OPENAI_SETTINGS['COMPLETION_CREATE_ARGS']
+        self.last_messages.append(
+            {
+                "role": "user",
+                "content": message.text,
+            }
         )
-        return [OutgoingMessage(
-            type=MessageType.TEXT,
-            text=gpt3_answer['choices'][0]['text'],
-            local_id=self.generate_local_id(),
-        )]
+        openai.api_key = self.settings.OPENAI_SETTINGS["API_KEY"]
+        match self.settings.OPENAI_SETTINGS["COMPLETION_CLASS"]:
+            case "openai.ChatCompletion":
+                r = openai.ChatCompletion.create(
+                    messages=[*self.last_messages],
+                    **self.settings.OPENAI_SETTINGS["COMPLETION_CREATE_ARGS"]
+                )
+                generated_answer = r["choices"][0]["message"]["content"]
+            case "openai.Completion":
+                r = openai.Completion.create(
+                    prompt=message.text,
+                    **self.settings.OPENAI_SETTINGS["COMPLETION_CREATE_ARGS"]
+                )
+                generated_answer = r["choices"][0]["text"]
+            case _:
+                raise ValueError("Invalid value for COMPLETION_CLASS")
+        self.last_messages.append(
+            {
+                "role": "assistant",
+                "content": generated_answer,
+            }
+        )
+        return [
+            OutgoingMessage(
+                type=MessageType.TEXT,
+                text=generated_answer,
+                local_id=self.generate_local_id(),
+            )
+        ]
