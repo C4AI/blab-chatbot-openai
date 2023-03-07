@@ -47,6 +47,8 @@ class OpenAISettings(TypedDict):
 
     COMPLETION_CLASS: Literal["openai.Completion", "openai.ChatCompletion"]
 
+    HISTORY_SIZE: int
+
 
 @runtime_checkable
 class BlabOpenAIClientSettings(BlabBotClientSettings, Protocol):

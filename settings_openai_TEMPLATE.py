@@ -11,6 +11,9 @@ OPENAI_SETTINGS: dict[str, Any] = {
     # "openai.ChatCompletion" or "openai.Completion", depending on the model
     "COMPLETION_CLASS": "",
     #
+    # number of previous messages to send to the server (only for ChatCompletion):
+    "HISTORY_SIZE": 10,
+    #
     # arguments to create the completion instance - see documentation:
     # https://platform.openai.com/docs/api-reference/completions/create?lang=python
     # and
