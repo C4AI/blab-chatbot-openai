@@ -79,5 +79,6 @@ class OpenAIWebSocketBotClientConversation(WebSocketBotClientConversation):
                 type=MessageType.TEXT,
                 text=generated_answer,
                 local_id=self.generate_local_id(),
+                quoted_message_id=message.id,
             )
         ]
