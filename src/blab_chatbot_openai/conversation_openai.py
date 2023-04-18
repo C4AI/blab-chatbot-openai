@@ -17,10 +17,10 @@ from overrides import overrides
 from blab_chatbot_openai.openai_settings_format import BlabOpenAIClientSettings
 
 
-class OpenAIWebSocketBotClientConversation(WebSocketBotClientConversation):
+class OpenAIWebSocketBotClientConversation(
+    WebSocketBotClientConversation[BlabOpenAIClientSettings]
+):
     """Performs the communication between OpenAI and BLAB Controller."""
-
-    settings: BlabOpenAIClientSettings
 
     def __init__(self, *args: Any, **kwargs: Any):
         """Create an instance. The history deque is initialized as empty."""

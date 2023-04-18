@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "blab-chatbot-gpt3"
+name = "blab-chatbot-openai"
 version = "0.1.0"
 description = ""
 authors = ["C4AI"]
@@ -22,7 +22,7 @@ flake8-docstrings = "*"
 flake8-bugbear = "*"
 python-lsp-server = { extras = ["all"], version = "*" }
 pyupgrade = "*"
-mypy = "^0.931"
+mypy = "^1.2.0"
 pre-commit = "^2.18.1"
 
 [build-system]
