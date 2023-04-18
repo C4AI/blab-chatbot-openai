@@ -25,7 +25,9 @@ class OpenAIWebSocketBotClientConversation(WebSocketBotClientConversation):
     def __init__(self, *args: Any, **kwargs: Any):
         """Create an instance. The history deque is initialized as empty."""
         super().__init__(*args, **kwargs)
-        self.last_messages = deque(maxlen=max(1, self.settings.OPENAI_SETTINGS['HISTORY_SIZE']))
+        self.last_messages = deque(
+            maxlen=max(1, self.settings.OPENAI_SETTINGS["HISTORY_SIZE"])
+        )
 
     @overrides
     def on_connect(self) -> None:

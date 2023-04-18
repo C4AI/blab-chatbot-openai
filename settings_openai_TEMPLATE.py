@@ -42,4 +42,3 @@ OPENAI_SETTINGS: dict[str, Any] = {
     },
 
 }
-

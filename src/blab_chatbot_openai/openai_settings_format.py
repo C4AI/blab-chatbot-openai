@@ -21,8 +21,6 @@ class OpenAICompletionCreateArgs(TypedDict):
     https://platform.openai.com/docs/api-reference/chat/create?lang=python
     """
 
-    # see:
-
     model: str
     max_tokens: int
     temperature: float

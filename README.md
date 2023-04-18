@@ -17,4 +17,3 @@ models with
 
 - Follow [these instructions](../../../blab-chatbot-bot-client/blob/main/RUN.md) to execute the
   program.
- 
