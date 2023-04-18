@@ -16,8 +16,6 @@ from overrides import overrides
 
 from blab_chatbot_openai.openai_settings_format import BlabOpenAIClientSettings
 
-history_length = 8
-
 
 class OpenAIWebSocketBotClientConversation(WebSocketBotClientConversation):
     """Performs the communication between OpenAI and BLAB Controller."""
