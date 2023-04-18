@@ -55,7 +55,7 @@ class BlabOpenAIClientSettings(BlabBotClientSettings, Protocol):
     """This protocol should be implemented by the configuration file.
 
     It extends the parent protocol (`BlabBotClientSettings`)
-    with the inclusion of the `OpenAISettings` field.
+    with the inclusion of the `OPENAI_SETTINGS` field.
     """
 
     OPENAI_SETTINGS: OpenAISettings
