@@ -25,7 +25,7 @@ class OpenAIWebSocketBotClientConversation(WebSocketBotClientConversation):
     def __init__(self, *args: Any, **kwargs: Any):
         """Create an instance. The history deque is initialized as empty."""
         super().__init__(*args, **kwargs)
-        self.last_messages = deque(
+        self.last_messages: deque[dict[str, Any]] = deque(
             maxlen=max(1, self.settings.OPENAI_SETTINGS["HISTORY_SIZE"])
         )
 
@@ -57,13 +57,13 @@ class OpenAIWebSocketBotClientConversation(WebSocketBotClientConversation):
             case "openai.ChatCompletion":
                 r = openai.ChatCompletion.create(
                     messages=[*self.last_messages],
-                    **self.settings.OPENAI_SETTINGS["COMPLETION_CREATE_ARGS"]
+                    **self.settings.OPENAI_SETTINGS["COMPLETION_CREATE_ARGS"],
                 )
                 generated_answer = r["choices"][0]["message"]["content"]
             case "openai.Completion":
                 r = openai.Completion.create(
                     prompt=message.text,
-                    **self.settings.OPENAI_SETTINGS["COMPLETION_CREATE_ARGS"]
+                    **self.settings.OPENAI_SETTINGS["COMPLETION_CREATE_ARGS"],
                 )
                 generated_answer = r["choices"][0]["text"]
             case _:
