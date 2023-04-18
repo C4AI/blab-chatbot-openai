@@ -1,6 +1,7 @@
 # BLAB Chatbot - OpenAI
 
-This Python module allows the integration of [OpenAI](../../../deepage) models with
+This Python module allows the integration of [OpenAI](https://platform.openai.com/docs/introduction)
+models with
 [BLAB](../../../blab-controller).
 
 
