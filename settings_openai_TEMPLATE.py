@@ -1,4 +1,4 @@
-"""This module contains settings for OpenAI."""
+"""A module that contains settings for OpenAI."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""This module interacts with the APIs of OpenAI and BLAB Controller."""
+"""A module that interacts with the APIs of OpenAI and BLAB Controller."""
 
 from collections import deque
 from typing import Any
@@ -67,7 +67,8 @@ class OpenAIWebSocketBotClientConversation(
                 )
                 generated_answer = r["choices"][0]["text"]
             case _:
-                raise ValueError("Invalid value for COMPLETION_CLASS")
+                error = "Invalid value for COMPLETION_CLASS"  # type:ignore[unreachable]
+                raise ValueError(error)
         self.last_messages.append(
             {
                 "role": "assistant",

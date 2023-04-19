@@ -1,11 +1,11 @@
-"""This module defines the expected format of the configuration file.
+"""A module that defines the expected format of the configuration file.
 
 See the file `settings_openai_TEMPLATE.py` for a template.
 """
 
 from typing import Literal, Protocol, TypedDict, runtime_checkable
 
-from blab_chatbot_bot_client.settings_format import BlabBotClientSettings
+from blab_chatbot_bot_client.settings_format import BlabWebSocketBotClientSettings
 
 
 # noinspection SpellCheckingInspection
@@ -49,8 +49,8 @@ class OpenAISettings(TypedDict):
 
 
 @runtime_checkable
-class BlabOpenAIClientSettings(BlabBotClientSettings, Protocol):
-    """This protocol should be implemented by the configuration file.
+class BlabOpenAIClientSettings(BlabWebSocketBotClientSettings, Protocol):
+    """A protocol that should be implemented by the configuration file.
 
     It extends the parent protocol (`BlabBotClientSettings`)
     with the inclusion of the `OPENAI_SETTINGS` field.
