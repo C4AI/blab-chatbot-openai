@@ -14,7 +14,9 @@ project = "BLAB Chatbot Client for OpenAI"
 # noinspection PyShadowingBuiltins
 copyright = "2023, C4AI"
 author = "C4AI"
-release = subprocess.run(["git", "describe", "--tags"], capture_output=True).stdout.decode("utf-8")
+release = subprocess.run(
+    ["git", "describe", "--tags"], capture_output=True
+).stdout.decode("utf-8")
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
