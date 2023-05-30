@@ -114,7 +114,7 @@ lxml = ["lxml"]
 [[package]]
 name = "blab-chatbot-bot-client"
 version = "1.0.0"
-description = ""
+description = "A Python client that implements the integration of external bots with BLAB Controller."
 category = "main"
 optional = false
 python-versions = "^3.8,>=3.8.1"
@@ -134,8 +134,8 @@ ws = ["flask (>=2.2.2,<3.0.0)", "waitress (>=2.1.2,<3.0.0)", "websocket-client (
 [package.source]
 type = "git"
 url = "https://github.com/C4AI/blab-chatbot-bot-client.git"
-reference = "main"
-resolved_reference = "70b6a69390b00c91739c43add2daaf410e508dca"
+reference = "v1.0.0"
+resolved_reference = "b3d2ebf0224e2d6b035630c77d4337145c266ed3"
 
 [[package]]
 name = "black"
@@ -1149,7 +1149,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "5feee2534088604ba9ec0b3af9b7932288bea1a419878e230fbfd633e5557f89"
+content-hash = "9bb792787cf0af313b82e780af6c2c60b0ca3251958fd9cde11f3c39e067aa09"
 
 [metadata.files]
 aiohttp = [
