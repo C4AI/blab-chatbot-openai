@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "blab-chatbot-openai"
-version = "0.1.0"
-description = ""
+version = "1.0.0"
+description = "A library that implements the bidirectional communication between BLAB Controller and OpenAI services."
 authors = ["C4AI"]
 readme = "README.md"
 #packages = [{include = "blab_chatbot_openai"}]
