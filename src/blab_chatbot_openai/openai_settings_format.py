@@ -1,6 +1,6 @@
 """A module that defines the expected format of the configuration file.
 
-See the file `settings_openai_TEMPLATE.py` for a template.
+See the file ``settings_openai_TEMPLATE.py`` for a template.
 """
 
 from typing import Literal, Protocol, TypedDict, runtime_checkable
@@ -40,20 +40,25 @@ class OpenAISettings(TypedDict):
     """Contains parameters related to the OpenAI service."""
 
     API_KEY: str
+    """OpenAI API key"""
 
     COMPLETION_CREATE_ARGS: OpenAICompletionCreateArgs
+    """Arguments to create the completion instance"""
 
     COMPLETION_CLASS: Literal["openai.Completion", "openai.ChatCompletion"]
+    """`openai.ChatCompletion` or `openai.Completion`, depending on the model"""
 
     HISTORY_SIZE: int
+    """Number of previous messages to send to the server (only for `ChatCompletion`)"""
 
 
 @runtime_checkable
 class BlabOpenAIClientSettings(BlabWebSocketBotClientSettings, Protocol):
     """A protocol that should be implemented by the configuration file.
 
-    It extends the parent protocol (`BlabBotClientSettings`)
-    with the inclusion of the `OPENAI_SETTINGS` field.
+    It extends the parent protocol (``BlabBotClientSettings``)
+    with the inclusion of the ``OPENAI_SETTINGS`` field.
     """
 
     OPENAI_SETTINGS: OpenAISettings
+    """OpenAI-specific settings"""
